@@ -55,7 +55,7 @@ export default function FiveDayForecast({
           align="center"
           title={
             <Skeleton>
-              <h3>5 Day Forecast</h3>
+              <h4>5 Day Forecast</h4>
             </Skeleton>
           }
         />
@@ -76,7 +76,7 @@ export default function FiveDayForecast({
 
   return (
     <Card sx={{ paddingBottom: "1rem" }}>
-      <CardHeader align="center" title={<h3>5 Day Forecast</h3>} />
+      <CardHeader align="center" title={<h4>5 Day Forecast</h4>} />
       <Grid
         container
         direction={"row"}
@@ -109,7 +109,7 @@ export default function FiveDayForecast({
                     Low: {lows[idx]}
                     {unit}
                   </p>
-                  <p>{rainChances[idx]}% chance of precipitation</p>
+                  <p>Precipitation: {rainChances[idx]}%</p>
                 </Card>
               </Grid>
             </ThemeProvider>
