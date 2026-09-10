@@ -209,7 +209,7 @@ function Dashboard({ setWeatherTheme }) {
                   <Grid size={'grow'}>
                     <p>{option.country}</p>
                   </Grid>
-                  <Grid size={2} sx={{textAlign:'right'}}>
+                  <Grid size={3}>
                     <p>{option.admin1}</p>
                   </Grid>
                 </Grid>
