@@ -1,4 +1,5 @@
 import {
+  Alert,
   AppBar,
   Autocomplete,
   Box,
@@ -81,6 +82,14 @@ function Dashboard({ setWeatherTheme }) {
 
   function closeMenu(e) {
     setMenuAnchor(null);
+  }
+
+  function isFormValid() {
+    const { city, units } = formData;
+    if (!city || !units) {
+      return false;
+    }
+    return true;
   }
 
   function handleCityInputChange(event, newInputValue) {
@@ -173,6 +182,9 @@ function Dashboard({ setWeatherTheme }) {
         columns={{ xs: 4, sm: 4, md: 12 }}
         sx={{ alignItems: "center", marginBottom: "1rem" }}
       >
+        {/* <Grid size={12}>
+          <Alert severity="info">City and Units are required</Alert>
+        </Grid> */}
         <Grid size={6}>
           <Autocomplete
             value={formData.city}
@@ -181,6 +193,7 @@ function Dashboard({ setWeatherTheme }) {
             onInputChange={handleCityInputChange}
             id="city"
             options={cityOptions}
+            noOptionsText="Start entering a city name to populate options"
             getOptionKey={(option) => option.id}
             renderOption={(props, option) => {
               const { key, ...optionProps } = props;
@@ -204,11 +217,11 @@ function Dashboard({ setWeatherTheme }) {
                 </Grid>
               );
             }}
-            renderInput={(params) => <TextField {...params} label="City" />}
+            renderInput={(params) => <TextField required {...params} label="City" />}
           />
         </Grid>
         <Grid size={3}>
-          <FormControl fullWidth>
+          <FormControl fullWidth required>
             <InputLabel id="units-label">Units</InputLabel>
             <Select
               label="Units"
@@ -228,7 +241,11 @@ function Dashboard({ setWeatherTheme }) {
           </FormControl>
         </Grid>
         <Grid size={3}>
-          <Button variant="contained" onClick={() => fetchWeather()}>
+          <Button
+            variant="contained"
+            disabled={!isFormValid()}
+            onClick={() => fetchWeather()}
+          >
             Get Weather
           </Button>
         </Grid>
