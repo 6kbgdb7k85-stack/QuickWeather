@@ -27,7 +27,7 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
 
     const colorScale = scaleLinear()
       .domain([cold, good, hot])
-      .range(["#0073FF", "#A6FF00", "#FF0000"])
+      .range(['#A5F3FC','#22C55E','#EF4444'])
       .clamp(true);
 
     const style = { color: colorScale(temp) };
