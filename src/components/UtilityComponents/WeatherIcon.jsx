@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  WiAlien,
   WiCloudy,
   WiDayCloudy,
   WiDaySunny,
@@ -56,5 +57,8 @@ export default function WeatherIcon({ code, size }) {
     case 96:
     case 99:
       return <WiThunderstorm size={size} />;
+    default:
+      // something that obviously isn't a weather symbol to denote that the provided weather code didn't match anything
+      return <WiAlien size={size}/>
   }
 }
