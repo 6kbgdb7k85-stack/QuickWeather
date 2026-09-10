@@ -1,5 +1,6 @@
 import {
   Card,
+  CardActionArea,
   CardHeader,
   Grid,
   Skeleton,
@@ -10,6 +11,7 @@ import React from "react";
 import { getTheme } from "../../services/utils";
 import WeatherIcon from "../UtilityComponents/WeatherIcon";
 import { daysOfWeek } from "../../common/constants";
+import { useNavigate } from "react-router-dom";
 
 export default function FiveDayForecast({
   unit,
@@ -19,7 +21,12 @@ export default function FiveDayForecast({
   conditions,
   rainChances,
   isLoading,
+  sunsets,
+  sunrises
 }) {
+
+  const navigate = useNavigate();
+
   function getSkeleton() {
     const skeleton = [];
     for (let i = 0; i < 5; i++) {
@@ -62,6 +69,7 @@ export default function FiveDayForecast({
         <Grid
           container
           direction={"row"}
+          spacing={1}
           sx={{ justifyContent: "center", alignContent: "center" }}
         >
           {getSkeleton()}
@@ -75,7 +83,7 @@ export default function FiveDayForecast({
   }
 
   return (
-    <Card id='forecast-card' sx={{ paddingBottom: "1rem" }}>
+    <Card id="forecast-card" sx={{ paddingBottom: "1rem" }}>
       <CardHeader align="center" title={<h3>5 Day Forecast</h3>} />
       <Grid
         container
@@ -96,23 +104,33 @@ export default function FiveDayForecast({
                     height: "100%",
                     overflowWrap: "break-word",
                     hyphens: "auto",
-                    borderColor: 'black',
-                    borderWidth: '1px'
+                    borderColor: "black",
+                    borderWidth: "1px",
                   }}
                 >
-                  <h2>
-                    {daysOfWeek[new Date(year, month - 1, date).getDay()]}
-                  </h2>
-                  <WeatherIcon code={conditions[idx]} size={50} />
-                  <p>
-                    High: {highs[idx]}
-                    {unit}
-                  </p>
-                  <p>
-                    Low: {lows[idx]}
-                    {unit}
-                  </p>
-                  <p>Precipitation: {rainChances[idx]}%</p>
+                  <CardActionArea onClick={()=>navigate('/forecast/day',{state:{
+                    unit,
+                    day,
+                    condition: conditions[idx],
+                    high: highs[idx],
+                    low: lows[idx],
+                    sunset: sunsets[idx],
+                    sunrise: sunrises[idx]
+                  }})}>
+                    <h2>
+                      {daysOfWeek[new Date(year, month - 1, date).getDay()]}
+                    </h2>
+                    <WeatherIcon code={conditions[idx]} size={50} />
+                    <p>
+                      High: {highs[idx]}
+                      {unit}
+                    </p>
+                    <p>
+                      Low: {lows[idx]}
+                      {unit}
+                    </p>
+                    <p>Precipitation: {rainChances[idx]}%</p>
+                  </CardActionArea>
                 </Card>
               </Grid>
             </ThemeProvider>

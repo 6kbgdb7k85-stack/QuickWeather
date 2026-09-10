@@ -24,7 +24,7 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
     );
   }
 
-  if (!current || !high || !low || !unit) {
+  if ((!current && (!high && !low)) || !unit) {
     return <></>;
   }
 
@@ -45,27 +45,40 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
   }
 
   return (
-    <Card id='temp-card' sx={{ height: "100%", textAlign: "center" }}>
-      <CardHeader title={<h3>Temperature</h3>} />
+    <Card id="temp-card" sx={{ height: "100%", textAlign: "center" }}>
+      <CardHeader title={<h3>Temperatures</h3>} />
       <Grid container>
-        <Grid size={12}>
-          <h1 id='temp-current' style={getTempColor(unit, current)}>
-            {current}
-            {unit}
-          </h1>
-        </Grid>
-        <Grid size={6}>
-          <h2 id='temp-low' style={getTempColor(unit, low)}>
-            {low}
-            {unit}
-          </h2>
-        </Grid>
-        <Grid size={6}>
-            <h2 id="temp-high" style={getTempColor(unit, high)}>
-              {high}
+        {current ? (
+          <Grid size={12}>
+            <Typography variant="subtitle">Current:</Typography>
+            <h1 id="temp-current" style={getTempColor(unit, current)}>
+              {current}
               {unit}
-            </h2>
-        </Grid>
+            </h1>
+          </Grid>
+        ) : (
+          <></>
+        )}
+        {high && low ? (
+          <>
+            <Grid size={6}>
+              <Typography variant="subtitle">Low:</Typography>
+              <h2 id="temp-low" style={getTempColor(unit, low)}>
+                {low}
+                {unit}
+              </h2>
+            </Grid>
+            <Grid size={6}>
+              <Typography variant="subtitle">High:</Typography>
+              <h2 id="temp-high" style={getTempColor(unit, high)}>
+                {high}
+                {unit}
+              </h2>
+            </Grid>
+          </>
+        ) : (
+          <></>
+        )}
       </Grid>
     </Card>
   );
