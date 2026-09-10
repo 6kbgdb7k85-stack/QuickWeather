@@ -1,10 +1,6 @@
-import { keyframes } from "@emotion/react";
 import { useState } from "react";
+import { apiUrls } from "../common/constants";
 
-const apiUrls = {
-  city: "https://geocoding-api.open-meteo.com/v1/search?",
-  currentWeather: "https://api.open-meteo.com/v1/forecast?",
-};
 
 export default function useApi(api) {
   const [isLoading, setIsLoading] = useState(false);
