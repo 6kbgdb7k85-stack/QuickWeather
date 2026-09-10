@@ -182,9 +182,6 @@ function Dashboard({ setWeatherTheme }) {
         columns={{ xs: 4, sm: 4, md: 12 }}
         sx={{ alignItems: "center", marginBottom: "1rem" }}
       >
-        {/* <Grid size={12}>
-          <Alert severity="info">City and Units are required</Alert>
-        </Grid> */}
         <Grid size={6}>
           <Autocomplete
             value={formData.city}
@@ -203,15 +200,16 @@ function Dashboard({ setWeatherTheme }) {
                   direction={"row"}
                   key={key}
                   {...optionProps}
+                  spacing={3}
                   sx={{ justifyContent: "space-evenly", alignItems: "center" }}
                 >
-                  <Grid size={3}>
+                  <Grid size={'auto'}>
                     <p>{option.label}</p>
                   </Grid>
-                  <Grid size={3}>
+                  <Grid size={'grow'}>
                     <p>{option.country}</p>
                   </Grid>
-                  <Grid size={3}>
+                  <Grid size={2} sx={{textAlign:'right'}}>
                     <p>{option.admin1}</p>
                   </Grid>
                 </Grid>
