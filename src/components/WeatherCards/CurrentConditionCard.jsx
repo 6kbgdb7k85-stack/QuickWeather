@@ -18,10 +18,10 @@ export default function CurrentConditionCard({ code, isLoading }) {
   }
 
   return (
-    <Card sx={{ textAlign: "center" }}>
+    <Card id='current-condition-card' sx={{ textAlign: "center" }}>
       <CardHeader title={<h3>Current Conditions</h3>} />
-      <WeatherIcon code={code} size={200} />
-      <h4>{wmoCodes[code]}</h4>
+      <WeatherIcon id='condition-icon' code={code} size={200} />
+      <h4 idf='condition-text'>{wmoCodes[code]}</h4>
     </Card>
   );
 }

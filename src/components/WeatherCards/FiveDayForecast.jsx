@@ -75,7 +75,7 @@ export default function FiveDayForecast({
   }
 
   return (
-    <Card sx={{ paddingBottom: "1rem" }}>
+    <Card id='forecast-card' sx={{ paddingBottom: "1rem" }}>
       <CardHeader align="center" title={<h4>5 Day Forecast</h4>} />
       <Grid
         container
@@ -89,12 +89,15 @@ export default function FiveDayForecast({
             <ThemeProvider key={day} theme={getTheme(conditions[idx])}>
               <Grid size={2}>
                 <Card
+                  id={`weather-card-day-${idx}`}
                   variant="outlined"
                   sx={{
                     textAlign: "center",
                     height: "100%",
                     overflowWrap: "break-word",
                     hyphens: "auto",
+                    borderColor: 'black',
+                    borderWidth: '1px'
                   }}
                 >
                   <h1>
@@ -102,7 +105,7 @@ export default function FiveDayForecast({
                   </h1>
                   <WeatherIcon code={conditions[idx]} size={50} />
                   <p>
-                    Hi: {highs[idx]}
+                    High: {highs[idx]}
                     {unit}
                   </p>
                   <p>
