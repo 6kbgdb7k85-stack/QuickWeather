@@ -1,4 +1,13 @@
-import { Box, Card, CardHeader, Grid, Skeleton, Stack } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardHeader,
+  Grid,
+  Skeleton,
+  Stack,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { scaleLinear } from "d3-scale";
 
@@ -27,7 +36,7 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
 
     const colorScale = scaleLinear()
       .domain([cold, good, hot])
-      .range(['#A5F3FC','#22C55E','#EF4444'])
+      .range(["#A5F3FC", "#22C55E", "#EF4444"])
       .clamp(true);
 
     const style = { color: colorScale(temp) };
@@ -36,26 +45,26 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
   }
 
   return (
-    <Card sx={{ height: "100%", textAlign: "center" }}>
+    <Card id='temp-card' sx={{ height: "100%", textAlign: "center" }}>
       <CardHeader title={<h3>Temperature</h3>} />
       <Grid container>
         <Grid size={12}>
-          <h1 style={getTempColor(unit, current)}>
+          <h1 id='temp-current' style={getTempColor(unit, current)}>
             {current}
             {unit}
           </h1>
         </Grid>
         <Grid size={6}>
-          <h2 style={getTempColor(unit, low)}>
+          <h2 id='temp-low' style={getTempColor(unit, low)}>
             {low}
             {unit}
           </h2>
         </Grid>
         <Grid size={6}>
-          <h2 style={getTempColor(unit, high)}>
-            {high}
-            {unit}
-          </h2>
+            <h2 id="temp-high" style={getTempColor(unit, high)}>
+              {high}
+              {unit}
+            </h2>
         </Grid>
       </Grid>
     </Card>
