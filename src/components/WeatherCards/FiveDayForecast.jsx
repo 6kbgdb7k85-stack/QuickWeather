@@ -76,7 +76,7 @@ export default function FiveDayForecast({
 
   return (
     <Card id='forecast-card' sx={{ paddingBottom: "1rem" }}>
-      <CardHeader align="center" title={<h4>5 Day Forecast</h4>} />
+      <CardHeader align="center" title={<h3>5 Day Forecast</h3>} />
       <Grid
         container
         direction={"row"}
@@ -100,9 +100,9 @@ export default function FiveDayForecast({
                     borderWidth: '1px'
                   }}
                 >
-                  <h1>
+                  <h2>
                     {daysOfWeek[new Date(year, month - 1, date).getDay()]}
-                  </h1>
+                  </h2>
                   <WeatherIcon code={conditions[idx]} size={50} />
                   <p>
                     High: {highs[idx]}
