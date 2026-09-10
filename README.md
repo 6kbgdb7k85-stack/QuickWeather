@@ -1,16 +1,12 @@
-# React + Vite
+# Quick Weather
+Weather application using Open-Meteo API to get weather data from around the world at a moments notice
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Features
+- Get current weather conditions and a 5 day forecast by city in either Imperial or Metric units
+- Theme changes to match the weather conditions
+    - Debug options are available in the menu to view each theme independently of the weather condition. Upon fetching weather conditions again the theme will reset according to the current condition
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# TODO
+- Trip planner where a user can enter their start and destination city and how long the trip is to get forecast data for the duration of the trip and the different conditions between start and end points on travel days (gotta know what to have easily accessible when you first arrive)
+- Hour by hour forecast for the current day
+- Ability to click on a forecast card for more details about that days forecast
