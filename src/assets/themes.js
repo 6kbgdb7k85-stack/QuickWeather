@@ -39,19 +39,37 @@ const rainyPalette = {
 
 const cloudyPalette = {
   palette: {
-    mode: "light",
+    mode: 'light',
     primary: {
-      main: "#ececec",
+      main: '#4c4c4c',
     },
     secondary: {
-      main: "#d8d6d6",
+      main: '#d8d6d6',
     },
     background: {
-      default: "#878787",
-      paper: "#a4a4a4",
+      default: '#a4a4a4',
+      paper: '#5b5b5b',
     },
+    divider: 'rgba(0,0,0,0.12)',
   },
-};
+}
+
+// old cloudy
+// const cloudyPalette = {
+//   palette: {
+//     mode: "light",
+//     primary: {
+//       main: "#ececec",
+//     },
+//     secondary: {
+//       main: "#d8d6d6",
+//     },
+//     background: {
+//       default: "#878787",
+//       paper: "#a4a4a4",
+//     },
+//   },
+// };
 
 export const clearTheme = createTheme(clearPalette);
 export const rainyTheme = createTheme(rainyPalette);
