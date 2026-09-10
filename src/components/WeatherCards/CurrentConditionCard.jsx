@@ -3,7 +3,6 @@ import WeatherIcon from "../UtilityComponents/WeatherIcon";
 import { Card, CardHeader, Skeleton } from "@mui/material";
 import { wmoCodes } from "../../common/constants";
 
-
 export default function CurrentConditionCard({ code, isLoading }) {
   if (isLoading) {
     return (
@@ -18,10 +17,12 @@ export default function CurrentConditionCard({ code, isLoading }) {
   }
 
   return (
-    <Card id='current-condition-card' sx={{ textAlign: "center" }}>
+    <Card id="current-condition-card" sx={{ textAlign: "center" }}>
       <CardHeader title={<h3>Current Conditions</h3>} />
-      <WeatherIcon id='condition-icon' code={code} size={200} />
-      <h4 idf='condition-text'>{wmoCodes[code]}</h4>
+      <WeatherIcon id="condition-icon" code={code} size={200} />
+      <h4 idf="condition-text">
+        {wmoCodes[code] || `Unknown weather code ${code}`}
+      </h4>
     </Card>
   );
 }
