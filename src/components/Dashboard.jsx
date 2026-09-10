@@ -24,23 +24,22 @@ import TempCard from "./WeatherCards/TempCard";
 import CurrentConditionCard from "./WeatherCards/CurrentConditionCard";
 import FiveDayForecast from "./WeatherCards/FiveDayForecast";
 import WindCard from "./WeatherCards/WindCard";
+import { useOutletContext } from "react-router-dom";
 
 const initFormData = {
   city: "",
   units: "",
 };
 
-function Dashboard({ setWeatherTheme }) {
-  const theme = useTheme();
+function Dashboard() {
+  const {setWeatherTheme, setPageName} = useOutletContext();
   const [weatherData, setWeatherData] = useState(null);
   const [formData, setFormData] = useState(initFormData);
   const [cityOptions, setCityOptions] = useState([]);
   const [cityLookup, setCityLookup] = useState("");
-  const [menuAnchor, setMenuAnchor] = useState(null);
 
   const {
     response: cityResponse,
-    isLoading: cityIsLoading,
     runApi: getCities,
   } = useApi("city");
 
@@ -56,6 +55,10 @@ function Dashboard({ setWeatherTheme }) {
       city: newValue,
     }));
   }
+
+  useEffect(()=>{
+    setPageName('Weather Dashboard')
+  },[])
 
   useEffect(() => {
     if (cityResponse?.results) {
@@ -75,14 +78,6 @@ function Dashboard({ setWeatherTheme }) {
       setWeatherTheme(weatherResponse.hourly.weather_code[0]);
     }
   }, [weatherResponse]);
-
-  function openMenu(e) {
-    setMenuAnchor(e.currentTarget);
-  }
-
-  function closeMenu(e) {
-    setMenuAnchor(null);
-  }
 
   function isFormValid() {
     const { city, units } = formData;
@@ -125,57 +120,7 @@ function Dashboard({ setWeatherTheme }) {
   }
 
   return (
-    <Container
-      fixed
-      sx={{
-        bgcolor: theme.palette.background.default,
-        width: "100%",
-        maxWidth: "100%",
-        paddingBottom: "1rem",
-      }}
-    >
-      <Box sx={{ flexGrow: 1, marginBottom: "1rem" }}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton onClick={openMenu}>
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              anchorEl={menuAnchor}
-              open={Boolean(menuAnchor)}
-              onClose={closeMenu}
-            >
-              <MenuItem
-                onClick={() => {
-                  closeMenu();
-                  setWeatherTheme(95);
-                }}
-              >
-                Debug Rain Theme
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  closeMenu();
-                  setWeatherTheme(0);
-                }}
-              >
-                Debug Clear Theme
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  closeMenu();
-                  setWeatherTheme(3);
-                }}
-              >
-                Debug Cloudy Theme
-              </MenuItem>
-            </Menu>
-            <Typography variant="h3" sx={{ flexGrow: 1 }}>
-              Quick Weather
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </Box>
+    <>
       <Grid
         container
         spacing={1}
@@ -203,10 +148,10 @@ function Dashboard({ setWeatherTheme }) {
                   spacing={3}
                   sx={{ justifyContent: "space-evenly", alignItems: "center" }}
                 >
-                  <Grid size={'auto'}>
+                  <Grid size={"auto"}>
                     <p>{option.label}</p>
                   </Grid>
-                  <Grid size={'grow'}>
+                  <Grid size={"grow"}>
                     <p>{option.country}</p>
                   </Grid>
                   <Grid size={3}>
@@ -215,7 +160,9 @@ function Dashboard({ setWeatherTheme }) {
                 </Grid>
               );
             }}
-            renderInput={(params) => <TextField required {...params} label="City" />}
+            renderInput={(params) => (
+              <TextField required {...params} label="City" />
+            )}
           />
         </Grid>
         <Grid size={3}>
@@ -287,10 +234,12 @@ function Dashboard({ setWeatherTheme }) {
             unit={weatherData?.daily_units.temperature_2m_max}
             conditions={weatherData?.daily.weather_code}
             isLoading={weatherIsLoading}
+            sunsets={weatherData?.daily.sunset}
+            sunrises={weatherData?.daily.sunrise}
           />
         </Grid>
       </Grid>
-    </Container>
+    </>
   );
 }
 
