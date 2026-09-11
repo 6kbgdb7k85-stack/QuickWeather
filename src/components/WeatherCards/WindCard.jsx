@@ -1,7 +1,7 @@
 import { Card, CardHeader, Skeleton, Stack, Typography } from "@mui/material";
 import React from "react";
 import {
-    WiDirectionDown,
+  WiDirectionDown,
   WiDirectionDownLeft,
   WiDirectionDownRight,
   WiDirectionLeft,
@@ -15,7 +15,7 @@ const ICON_SIZE = 150;
 
 export default function WindCard({ speed, direction, unit, isLoading }) {
   function windDirection(direction) {
-    const normalizedDirection = ((direction % 360) + 360) % 360;
+    const normalizedDirection = (direction + (180 % 360) + 360) % 360;
     const compassDirection = Math.round(normalizedDirection / 45) % 8;
     switch (compassDirection) {
       case 0:
@@ -42,7 +42,7 @@ export default function WindCard({ speed, direction, unit, isLoading }) {
       <Card sx={{ height: "100%", textAlign: "center" }}>
         <Stack spacing={1}>
           <Skeleton variant="rectangular" width={"100%"} height={300} />
-          <Skeleton variant="rectangular" width={"100%"} height={100}/>
+          <Skeleton variant="rectangular" width={"100%"} height={100} />
         </Stack>
       </Card>
     );
@@ -53,10 +53,22 @@ export default function WindCard({ speed, direction, unit, isLoading }) {
   }
 
   return (
-    <Card id='wind-card' sx={{ height: "100%", textAlign: "center" }}>
-    <CardHeader id='wind-direction' title={<h3>Wind Speed</h3>}/>
+    <Card id="wind-card" sx={{ height: "100%", textAlign: "center" }}>
+      <CardHeader
+        id="wind-direction"
+        title={
+          <Typography sx={{ fontWeight: "bold" }} variant="h3">
+            Wind Speed
+          </Typography>
+        }
+      />
       {windDirection(Number(direction))}
-      <Typography variant="h4" id='wind-speed'>
+      <Typography
+        variant="h4"
+        sx={{ fontWeight: "bold", marginBottom: "1rem" }}
+        component={"p"}
+        id="wind-speed"
+      >
         {speed} {unit}
       </Typography>
     </Card>
