@@ -89,17 +89,6 @@ export default function AppLayout() {
             <Typography variant="h3" sx={{ flexGrow: 1 }}>
               Quick Weather
             </Typography>
-            {pathname !== "/dashboard" ? (
-              <Button
-                sx={{ color: "text.primary" }}
-                onClick={() => navigate(-1)}
-                variant="text"
-              >
-                Return
-              </Button>
-            ) : (
-              <></>
-            )}
             <FormControl component={"fieldset"}>
               <FormGroup>
                 <FormControlLabel
@@ -116,6 +105,17 @@ export default function AppLayout() {
                 />
               </FormGroup>
             </FormControl>
+            {pathname !== "/dashboard" ? (
+              <Button
+                sx={{ color: "text.primary" }}
+                onClick={() => navigate(-1)}
+                variant="text"
+              >
+                Return
+              </Button>
+            ) : (
+              <></>
+            )}
           </Toolbar>
         </AppBar>
         <Box sx={{ color: theme.palette.text.primary }}>
