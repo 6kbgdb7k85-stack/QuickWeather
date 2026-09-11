@@ -8,9 +8,15 @@ import {
   Box,
   Button,
   Container,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
   IconButton,
   Menu,
   MenuItem,
+  Stack,
+  Switch,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -18,6 +24,7 @@ import {
 export default function AppLayout() {
   const [weatherCondition, setWeatherCondition] = useState(0);
   const [pageName, setPageName] = useState("");
+  const [is24HrTime, setIs24HrTime] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState(null);
 
   const { pathname } = useLocation();
@@ -93,13 +100,33 @@ export default function AppLayout() {
             ) : (
               <></>
             )}
+            <FormControl component={"fieldset"}>
+              <FormGroup>
+                <FormControlLabel
+                  value="on"
+                  control={
+                    <Switch
+                      color="secondary"
+                      checked={is24HrTime}
+                      onChange={(e) => setIs24HrTime(e.target.checked)}
+                    />
+                  }
+                  label="24 Hr Time"
+                  labelPlacement="End"
+                />
+              </FormGroup>
+            </FormControl>
           </Toolbar>
         </AppBar>
         <Box sx={{ color: theme.palette.text.primary }}>
           <h1>{pageName}</h1>
         </Box>
         <Outlet
-          context={{ setWeatherTheme: setWeatherCondition, setPageName }}
+          context={{
+            setWeatherTheme: setWeatherCondition,
+            setPageName,
+            is24HrTime,
+          }}
         />
       </Container>
     </ThemeProvider>

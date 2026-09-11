@@ -29,7 +29,7 @@ export const wmoCodes = {
     99: 'Thunderstorm With Heavy Hail'
 }
 
-export const daysOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+export const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 
 export const apiUrls = {
   city: "https://geocoding-api.open-meteo.com/v1/search?",

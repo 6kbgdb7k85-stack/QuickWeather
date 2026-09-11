@@ -5,13 +5,16 @@ import CurrentConditionCard from "./WeatherCards/CurrentConditionCard";
 import TempCard from "./WeatherCards/TempCard";
 import { Grid } from "@mui/material";
 import SunriseSunsetCard from "./WeatherCards/SunriseSunsetCard";
+import { daysOfWeek } from "../common/constants";
 
 export default function ForecastDetails() {
-  const { setWeatherTheme, setPageName } = useOutletContext();
+  const { setWeatherTheme, setPageName, is24HrTime } = useOutletContext();
   const { unit, day, condition, high, low, sunrise, sunset } = useLocation().state;
 
   useEffect(() => {
-    setPageName(`Forecast Details ${day}`);
+    const [year,month,date] = day.split('-').map(Number)
+    const weekDay = daysOfWeek[new Date(year,month-1,date).getDay()]
+    setPageName(<><span>Forecast Details</span><br/><span>{weekDay} {String(date).padStart(2,'0')}/{String(month).padStart(2,'0')}/{year}</span></>);
     setWeatherTheme(condition);
   }, []);
 
@@ -33,10 +36,11 @@ export default function ForecastDetails() {
       <Grid size={4}>
         <CurrentConditionCard
           code={condition}
+          isForecast
         />
       </Grid>
       <Grid size={4}>
-        <SunriseSunsetCard sunrise={sunrise} sunset={sunset}/>
+        <SunriseSunsetCard sunrise={sunrise} sunset={sunset} is24HrTime={is24HrTime}/>
       </Grid>
     </Grid>
   );

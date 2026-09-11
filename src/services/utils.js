@@ -44,3 +44,18 @@ export function getTheme(weatherCode) {
       return clearTheme;
   }
 }
+
+export function formatTime(time, is24Hour) {
+  const minutes = time.getMinutes();
+  let hours = time.getHours();
+  let meridiemInd = ""; // AM/PM marker
+  if (!is24Hour) {
+    if (hours > 12) {
+      hours = hours - 12;
+      meridiemInd = "PM";
+    } else {
+      meridiemInd = "AM";
+    }
+  }
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${meridiemInd}`;
+}
