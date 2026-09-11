@@ -118,7 +118,7 @@ export default function FiveDayForecast({
                     sunrise: sunrises[idx]
                   }})}>
                     <h2>
-                      {daysOfWeek[new Date(year, month - 1, date).getDay()]}
+                      {daysOfWeek[new Date(year, month - 1, date).getDay()].substring(0,3)}
                     </h2>
                     <WeatherIcon code={conditions[idx]} size={50} />
                     <p>

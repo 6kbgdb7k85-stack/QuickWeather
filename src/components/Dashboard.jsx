@@ -142,7 +142,7 @@ function Dashboard() {
       current:
         "temperature_2m,weather_code,wind_speed_10m,wind_direction_10m,precipitation",
       timezone: "auto",
-      forecast_days: 5,
+      forecast_days: 6,
       ...unitParams,
     });
   }
@@ -255,15 +255,15 @@ function Dashboard() {
         </Grid>
         <Grid size={12}>
           <FiveDayForecast
-            days={weatherData?.daily.time}
-            highs={weatherData?.daily.temperature_2m_max}
-            lows={weatherData?.daily.temperature_2m_min}
-            rainChances={weatherData?.daily.precipitation_probability_max}
+            days={weatherData?.daily.time.slice(1)}
+            highs={weatherData?.daily.temperature_2m_max.slice(1)}
+            lows={weatherData?.daily.temperature_2m_min.slice(1)}
+            rainChances={weatherData?.daily.precipitation_probability_max.slice(1)}
             unit={weatherData?.daily_units.temperature_2m_max}
-            conditions={weatherData?.daily.weather_code}
+            conditions={weatherData?.daily.weather_code.slice(1)}
             isLoading={weatherIsLoading}
-            sunsets={weatherData?.daily.sunset}
-            sunrises={weatherData?.daily.sunrise}
+            sunsets={weatherData?.daily.sunset.slice(1)}
+            sunrises={weatherData?.daily.sunrise.slice(1)}
           />
         </Grid>
       </Grid>
