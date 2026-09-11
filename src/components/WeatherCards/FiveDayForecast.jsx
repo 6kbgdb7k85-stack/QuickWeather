@@ -6,6 +6,7 @@ import {
   Skeleton,
   Stack,
   ThemeProvider,
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { getTheme } from "../../services/utils";
@@ -84,7 +85,7 @@ export default function FiveDayForecast({
 
   return (
     <Card id="forecast-card" sx={{ paddingBottom: "1rem" }}>
-      <CardHeader align="center" title={<h3>5 Day Forecast</h3>} />
+      <CardHeader align="center" title={<Typography sx={{fontWeight:'bold'}} variant="h3">5 Day Forecast</Typography>} />
       <Grid
         container
         direction={"row"}

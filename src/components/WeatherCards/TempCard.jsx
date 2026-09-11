@@ -39,19 +39,21 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
       .range(["#A5F3FC", "#22C55E", "#EF4444"])
       .clamp(true);
 
-    const style = { color: colorScale(temp) };
+    const roundedTemp = Math.round(temp)
+
+    const style = { color: colorScale(roundedTemp) };
 
     return style;
   }
 
   return (
     <Card id="temp-card" sx={{ height: "100%", textAlign: "center" }}>
-      <CardHeader title={<h3>Temperatures</h3>} />
+      <CardHeader title={<Typography sx={{fontWeight:'bold'}} variant="h3">Temperatures</Typography>} />
       <Grid container>
         {current ? (
           <Grid size={12}>
-            <Typography variant="h4">Current:</Typography>
-            <Typography variant="h3" sx={getTempColor(unit,current)}>{current}{unit}</Typography>
+            <Typography variant="h5" sx={{fontWeight:'bold'}} component={'p'}>Current:</Typography>
+            <Typography variant="h4" sx={{fontWeight:'bold'}} component={'h6'} style={getTempColor(unit,current)}>{Math.round(current)}{unit}</Typography>
           </Grid>
         ) : (
           <></>
@@ -59,16 +61,16 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
         {high && low ? (
           <>
             <Grid size={6}>
-              <Typography variant="h4">Low:</Typography>
-              <Typography variant="h3" id="temp-low" style={getTempColor(unit, low)}>
-                {low}
+              <Typography variant="h5" sx={{fontWeight:'bold'}} component={'p'}>Low:</Typography>
+              <Typography variant="h4" sx={{fontWeight:'bold'}} component={'h6'} style={getTempColor(unit, low)}>
+                {Math.round(low)}
                 {unit}
               </Typography>
             </Grid>
             <Grid size={6}>
-              <Typography variant="h4">High:</Typography>
-              <Typography variant="h3" id="temp-high" style={getTempColor(unit, high)}>
-                {high}
+              <Typography variant="h5" sx={{fontWeight:'bold'}} component={'p'}>High:</Typography>
+              <Typography variant="h4" sx={{fontWeight:'bold'}} component={'h6'} id="temp-high" style={getTempColor(unit, high)}>
+                {Math.round(high)}
                 {unit}
               </Typography>
             </Grid>
