@@ -16,11 +16,11 @@ export default function SunriseSunsetCard({ sunrise, sunset, is24HrTime }) {
       <Grid container spacing={1}>
         <Grid size={6}>
           <WiSunrise size={ICON_SIZE} />
-          <h4>{formatTime(sunriseDatetime,is24HrTime)}</h4>
+          <h3>{formatTime(sunriseDatetime,is24HrTime)}</h3>
         </Grid>
         <Grid size={6}>
           <WiSunset size={ICON_SIZE} />
-          <h4>{formatTime(sunsetDatetime,is24HrTime)}</h4>
+          <h3>{formatTime(sunsetDatetime,is24HrTime)}</h3>
         </Grid>
       </Grid>
     </Card>
