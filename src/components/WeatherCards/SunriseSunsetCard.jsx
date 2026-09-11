@@ -1,4 +1,4 @@
-import { Card, CardHeader, Grid } from "@mui/material";
+import { Card, CardHeader, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useOutletContext } from "react-router-dom";
 import { WiSunrise, WiSunset } from "weather-icons-react";
@@ -16,11 +16,11 @@ export default function SunriseSunsetCard({ sunrise, sunset, is24HrTime }) {
       <Grid container spacing={1}>
         <Grid size={6}>
           <WiSunrise size={ICON_SIZE} />
-          <h3>{formatTime(sunriseDatetime,is24HrTime)}</h3>
+          <Typography variant="h4">{formatTime(sunriseDatetime,is24HrTime)}</Typography>
         </Grid>
         <Grid size={6}>
           <WiSunset size={ICON_SIZE} />
-          <h3>{formatTime(sunsetDatetime,is24HrTime)}</h3>
+          <Typography variant="h4">{formatTime(sunsetDatetime,is24HrTime)}</Typography>
         </Grid>
       </Grid>
     </Card>
