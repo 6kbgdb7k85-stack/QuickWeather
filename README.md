@@ -1,5 +1,6 @@
 # Quick Weather
 Weather application using Open-Meteo API to get weather data from around the world at a moments notice
+- uses Geocoding API from Open-Meteo to get coordinate data from city names
 
 # Features
 - Get current weather conditions and a 5 day forecast by city in either Imperial or Metric units
@@ -9,6 +10,7 @@ Weather application using Open-Meteo API to get weather data from around the wor
     - Blue (32F/0C) dangerously cold
     - Green (72F/22C) comfortable
     - Red (103F/39C) dangerously hot
+- Click a card in the "5 Day Forecast" section to get more details about that day
 
 # Usage
 - https://quickweather-t6eq.onrender.com/dashboard
@@ -16,7 +18,12 @@ Weather application using Open-Meteo API to get weather data from around the wor
 - Select "Imperial" or "Metric" from the "Units" dropdown
 - Click "Get Weather"
 
+# Local Usage
+- clone repo
+- run npm install and npm run dev
+- refer to usage section
+
 # TODO
 - Trip planner where a user can enter their start and destination city and how long the trip is to get forecast data for the duration of the trip and the different conditions between start and end points on travel days (gotta know what to have easily accessible when you first arrive)
 - Hour by hour forecast for the current day
-- Ability to click on a forecast card for more details about that days forecast
+- ~~Ability to click on a forecast card for more details about that days forecast~~ Complete
