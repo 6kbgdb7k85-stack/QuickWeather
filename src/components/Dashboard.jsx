@@ -24,7 +24,8 @@ import TempCard from "./WeatherCards/TempCard";
 import CurrentConditionCard from "./WeatherCards/CurrentConditionCard";
 import FiveDayForecast from "./WeatherCards/FiveDayForecast";
 import WindCard from "./WeatherCards/WindCard";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useSearchParams } from "react-router-dom";
+import { apiUrls } from "../common/constants";
 
 const initFormData = {
   city: "",
@@ -32,16 +33,16 @@ const initFormData = {
 };
 
 function Dashboard() {
-  const {setWeatherTheme, setPageName} = useOutletContext();
+  const { setWeatherTheme, setPageName } = useOutletContext();
   const [weatherData, setWeatherData] = useState(null);
   const [formData, setFormData] = useState(initFormData);
   const [cityOptions, setCityOptions] = useState([]);
   const [cityLookup, setCityLookup] = useState("");
+  const [init, setInit] = useState(true);
 
-  const {
-    response: cityResponse,
-    runApi: getCities,
-  } = useApi("city");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { response: cityResponse, runApi: getCities } = useApi("city");
 
   const {
     response: weatherResponse,
@@ -56,12 +57,32 @@ function Dashboard() {
     }));
   }
 
-  useEffect(()=>{
-    setPageName('Weather Dashboard')
-  },[])
+  useEffect(() => {
+    setPageName("Weather Dashboard");
+  }, []);
+
+  useEffect(() => {
+    if (searchParams.size > 0) {
+      getCities({
+        name: searchParams.get('city'),
+        count: 1,
+        language: "en",
+        format: "json",
+      });
+    }else{
+      setInit(false)
+    }
+  }, []);
 
   useEffect(() => {
     if (cityResponse?.results) {
+      if(init){
+        city = cityResponse.results[0];
+        units = searchParams.get('units')
+        setFormData({city: city.name,units})
+        fetchWeather(city,units)
+        setInit(false)
+      }
       setCityOptions(
         cityResponse.results.map((city) => ({
           label: city.name,
@@ -97,16 +118,19 @@ function Dashboard() {
     });
   }
 
-  function fetchWeather() {
+  function fetchWeather(searchCity = null, searchUnits = null) {
+    const city = searchCity || formData.city;
+    const units = searchUnits || formData.units;
     const unitParams = {};
-    if (formData.units === "imp") {
+    if (units === "imp") {
       unitParams.temperature_unit = "fahrenheit";
       unitParams.precipitation_unit = "inch";
       unitParams.wind_speed_unit = "mph";
     }
+    setSearchParams({ city: `${city.name}, ${city.admin1}, ${city.country}`, units: units });
     getWeather({
-      latitude: formData.city.latitude,
-      longitude: formData.city.longitude,
+      latitude: city.latitude,
+      longitude: city.longitude,
       daily:
         "temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max,weather_code",
       hourly:
