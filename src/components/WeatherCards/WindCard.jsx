@@ -57,14 +57,14 @@ export default function WindCard({ speed, direction, unit, isLoading }) {
       <CardHeader
         id="wind-direction"
         title={
-          <Typography sx={{ fontWeight: "bold" }} variant="h3">
+          <Typography sx={{ fontWeight: "bold" }} variant="h4">
             Wind Speed
           </Typography>
         }
       />
       {windDirection(Number(direction))}
       <Typography
-        variant="h4"
+        variant="h5"
         sx={{ fontWeight: "bold", marginBottom: "1rem" }}
         component={"p"}
         id="wind-speed"

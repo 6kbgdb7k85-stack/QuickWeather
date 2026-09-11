@@ -85,7 +85,7 @@ export default function FiveDayForecast({
 
   return (
     <Card id="forecast-card" sx={{ paddingBottom: "1rem" }}>
-      <CardHeader align="center" title={<Typography sx={{fontWeight:'bold'}} variant="h3">5 Day Forecast</Typography>} />
+      <CardHeader align="center" title={<Typography sx={{fontWeight:'bold'}} variant="h4">5 Day Forecast</Typography>} />
       <Grid
         container
         direction={"row"}
