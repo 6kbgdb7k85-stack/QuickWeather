@@ -100,14 +100,14 @@ export default function AppLayout() {
                       onChange={(e) => setIs24HrTime(e.target.checked)}
                     />
                   }
-                  label="24 Hr Time"
+                  label="24Hr"
                   labelPlacement="End"
                 />
               </FormGroup>
             </FormControl>
             {pathname !== "/dashboard" ? (
               <Button
-                sx={{ color: "text.primary" }}
+                sx={{ color: "text.primary", marginLeft:'1rem' }}
                 onClick={() => navigate(-1)}
                 variant="text"
               >
