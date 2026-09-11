@@ -50,7 +50,7 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
       <Grid container>
         {current ? (
           <Grid size={12}>
-            <h4>Current:</h4>
+            <h3>Current:</h3>
             <h1 id="temp-current" style={getTempColor(unit, current)}>
               {current}
               {unit}
@@ -62,14 +62,14 @@ export default function TempCard({ current, high, low, unit, isLoading }) {
         {high && low ? (
           <>
             <Grid size={6}>
-              <h4>Low:</h4>
+              <h3>Low:</h3>
               <h2 id="temp-low" style={getTempColor(unit, low)}>
                 {low}
                 {unit}
               </h2>
             </Grid>
             <Grid size={6}>
-              <h4>High:</h4>
+              <h3>High:</h3>
               <h2 id="temp-high" style={getTempColor(unit, high)}>
                 {high}
                 {unit}

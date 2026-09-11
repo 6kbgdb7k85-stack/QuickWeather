@@ -56,9 +56,9 @@ export default function WindCard({ speed, direction, unit, isLoading }) {
     <Card id='wind-card' sx={{ height: "100%", textAlign: "center" }}>
     <CardHeader id='wind-direction' title={<h3>Wind Speed</h3>}/>
       {windDirection(Number(direction))}
-      <h2 id='wind-speed'>
+      <h3 id='wind-speed'>
         {speed} {unit}
-      </h2>
+      </h3>
     </Card>
   );
 }

@@ -20,9 +20,9 @@ export default function CurrentConditionCard({ code, isLoading, isForecast=false
     <Card id="current-condition-card" sx={{ textAlign: "center" }}>
       <CardHeader title={<h3>{isForecast?'Expected Conditions':'Current Conditions'}</h3>} />
       <WeatherIcon id="condition-icon" code={code} size={200} />
-      <h4 idf="condition-text">
+      <h3 idf="condition-text">
         {wmoCodes[code] || `Unknown weather code ${code}`}
-      </h4>
+      </h3>
     </Card>
   );
 }
