@@ -77,9 +77,13 @@ function Dashboard() {
   useEffect(() => {
     if (cityResponse?.results) {
       if(init){
-        city = cityResponse.results[0];
+        city = {
+          label: cityResponse.results[0].name,
+          id: cityResponse.results[0].id,
+          ...cityResponse.results[0]
+        };
         units = searchParams.get('units')
-        setFormData({city: city.name,units})
+        setFormData({city: city,units})
         fetchWeather(city,units)
         setInit(false)
       }
