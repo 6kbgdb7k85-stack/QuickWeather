@@ -86,7 +86,7 @@ export default function AppLayout() {
                 Debug Cloudy Theme
               </MenuItem>
             </Menu>
-            <Typography variant="h3" sx={{ flexGrow: 1 }}>
+            <Typography variant="h2" sx={{ flexGrow: 1 }}>
               Quick Weather
             </Typography>
             <FormControl component={"fieldset"}>
@@ -119,7 +119,7 @@ export default function AppLayout() {
           </Toolbar>
         </AppBar>
         <Box sx={{ color: theme.palette.text.primary }}>
-          <h1>{pageName}</h1>
+          <Typography variant="h4">{pageName}</Typography>
         </Box>
         <Outlet
           context={{

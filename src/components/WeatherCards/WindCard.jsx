@@ -1,4 +1,4 @@
-import { Card, CardHeader, Skeleton, Stack } from "@mui/material";
+import { Card, CardHeader, Skeleton, Stack, Typography } from "@mui/material";
 import React from "react";
 import {
     WiDirectionDown,
@@ -56,9 +56,9 @@ export default function WindCard({ speed, direction, unit, isLoading }) {
     <Card id='wind-card' sx={{ height: "100%", textAlign: "center" }}>
     <CardHeader id='wind-direction' title={<h3>Wind Speed</h3>}/>
       {windDirection(Number(direction))}
-      <h3 id='wind-speed'>
+      <Typography variant="h4" id='wind-speed'>
         {speed} {unit}
-      </h3>
+      </Typography>
     </Card>
   );
 }

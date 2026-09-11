@@ -1,6 +1,6 @@
 import React from "react";
 import WeatherIcon from "../UtilityComponents/WeatherIcon";
-import { Card, CardHeader, Skeleton } from "@mui/material";
+import { Card, CardHeader, Skeleton, Typography } from "@mui/material";
 import { wmoCodes } from "../../common/constants";
 
 export default function CurrentConditionCard({ code, isLoading, isForecast=false }) {
@@ -20,9 +20,9 @@ export default function CurrentConditionCard({ code, isLoading, isForecast=false
     <Card id="current-condition-card" sx={{ textAlign: "center" }}>
       <CardHeader title={<h3>{isForecast?'Expected Conditions':'Current Conditions'}</h3>} />
       <WeatherIcon id="condition-icon" code={code} size={200} />
-      <h3 idf="condition-text">
+      <Typography variant="h4" idf="condition-text">
         {wmoCodes[code] || `Unknown weather code ${code}`}
-      </h3>
+      </Typography>
     </Card>
   );
 }
