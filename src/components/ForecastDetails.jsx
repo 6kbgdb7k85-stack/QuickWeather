@@ -14,7 +14,7 @@ export default function ForecastDetails() {
   useEffect(() => {
     const [year,month,date] = day.split('-').map(Number)
     const weekDay = daysOfWeek[new Date(year,month-1,date).getDay()]
-    setPageName(<><span>Forecast Details</span><br/><span>{weekDay} {String(date).padStart(2,'0')}/{String(month).padStart(2,'0')}/{year}</span></>);
+    setPageName(<><span>Forecast Details</span><br/><span>{weekDay} {String(month).padStart(2,'0')}/{String(date).padStart(2,'0')}/{year}</span></>);
     setWeatherTheme(condition);
   }, []);
 
