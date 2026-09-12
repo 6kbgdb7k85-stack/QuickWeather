@@ -67,7 +67,7 @@ export default function AppLayout() {
                   setWeatherCondition(95);
                 }}
               >
-                Debug Rain Theme
+                Preview Rain Theme
               </MenuItem>
               <MenuItem
                 onClick={() => {
@@ -75,7 +75,7 @@ export default function AppLayout() {
                   setWeatherCondition(0);
                 }}
               >
-                Debug Clear Theme
+                Preview Clear Theme
               </MenuItem>
               <MenuItem
                 onClick={() => {
@@ -83,7 +83,7 @@ export default function AppLayout() {
                   setWeatherCondition(3);
                 }}
               >
-                Debug Cloudy Theme
+                Preview Cloudy Theme
               </MenuItem>
             </Menu>
             <Typography variant="h2" sx={{ flexGrow: 1 }}>

@@ -5,7 +5,7 @@ Weather application using Open-Meteo API to get weather data from around the wor
 # Features
 - Get current weather conditions and a 5 day forecast by city in either Imperial or Metric units
 - Theme changes to match the weather conditions
-    - Debug options are available in the menu to view each theme independently of the weather condition. Upon fetching weather conditions again the theme will reset according to the current condition
+    - Themes can be previewed in the menu and will set according to the weather condition of the next call
 - Temperature values shown in the Temperature card are colored along a gradient based on how hot or cold it is
     - Blue (32F/0C) dangerously cold
     - Green (72F/22C) comfortable
