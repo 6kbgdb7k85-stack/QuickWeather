@@ -1,23 +1,13 @@
 import {
-  Alert,
-  AppBar,
   Autocomplete,
-  Box,
   Button,
-  Container,
   FormControl,
   Grid,
-  IconButton,
   InputLabel,
-  Menu,
   MenuItem,
   Select,
   TextField,
-  Toolbar,
-  Typography,
-  useTheme,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import React, { useEffect, useState } from "react";
 import useApi from "../services/useAPI";
 import TempCard from "./WeatherCards/TempCard";
@@ -25,7 +15,6 @@ import CurrentConditionCard from "./WeatherCards/CurrentConditionCard";
 import FiveDayForecast from "./WeatherCards/FiveDayForecast";
 import WindCard from "./WeatherCards/WindCard";
 import { useOutletContext, useSearchParams } from "react-router-dom";
-import { apiUrls } from "../common/constants";
 
 const initFormData = {
   city: "",
@@ -77,12 +66,12 @@ function Dashboard() {
   useEffect(() => {
     if (cityResponse?.results) {
       if(init){
-        city = {
+        const city = {
           label: cityResponse.results[0].name,
           id: cityResponse.results[0].id,
           ...cityResponse.results[0]
         };
-        units = searchParams.get('units')
+        const units = searchParams.get('units')
         setFormData({city: city,units})
         fetchWeather(city,units)
         setInit(false)
