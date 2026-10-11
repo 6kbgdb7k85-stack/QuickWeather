@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
-import WindCard from "./WeatherCards/WindCard";
 import CurrentConditionCard from "./WeatherCards/CurrentConditionCard";
 import TempCard from "./WeatherCards/TempCard";
 import { Grid } from "@mui/material";
